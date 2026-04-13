@@ -12,8 +12,15 @@ class LoginPage:
     def enter_username(self, username):
         self.wait.until(EC.presence_of_element_located(LoginLocators.USERNAME_INPUT)).send_keys(username)
 
+    def error_username(self):
+        self.wait.untill(
+            EC.visibility_of_element_located(LoginLocators.ERROR_USERNAME_INPUT))
+
     def enter_password(self, password):
         self.driver.find_element(*LoginLocators.PASSWORD_INPUT).send_keys(password)
+
+    def eerror_password(self):
+        self.driver.find_element(*LoginLocators.ERROR_PASSWORD_INPUT)
 
     def click_login(self):
         self.driver.find_element(*LoginLocators.LOGIN_BUTTON).click()
@@ -24,6 +31,16 @@ class LoginPage:
         self.click_login()
 
     def get_invalid_credentials_message(self):
-        return self.driver.find_element(*LoginLocators.INVALID_CREDENTIALS_MESSAGE).text
-    def get_required_field_error(self):
-        return self.driver.find_element(*LoginLocators.REQUIRED_FIELD_ERROR)
+        return self.wait.until(
+            EC.visibility_of_element_located(LoginLocators.INVALID_CREDENTIALS_MESSAGE)
+        ).text
+
+    def get_required_field_errors(self):
+        return self.wait.until(
+            EC.presence_of_all_elements_located(LoginLocators.REQUIRED_FIELD_ERRORS)
+        )
+
+    def is_login_button_displayed(self):
+        return self.wait.until(
+            EC.visibility_of_element_located(LoginLocators.LOGIN_BUTTON)
+        ).is_displayed()

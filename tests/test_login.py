@@ -1,3 +1,4 @@
+from locators.login_locators import LoginLocators
 from pages.login_page import LoginPage
 from pages.home_page import HomePage
 
@@ -18,10 +19,23 @@ def test_invalid_login(driver):
     assert "Invalid credentials" in error_message
 
 
+def test_invalid_login(driver):
+    login_page = LoginPage(driver)
+
+    login_page.login("Admin", "wrong123")
+
+    error_message = login_page.get_invalid_credentials_message()
+    assert "Invalid credentials" in error_message
+
+
 def test_empty_credentials(driver):
     login_page = LoginPage(driver)
+
+    assert login_page.is_login_button_displayed()
 
     login_page.click_login()
 
     errors = login_page.get_required_field_errors()
     assert len(errors) == 2
+    assert all(error.text == "Required" for error in errors)
+
