@@ -1,4 +1,4 @@
-# Selenium Automation Framework 🚀
+# Selenium Automation Framework
 
 This project demonstrates a step-by-step development of a Selenium-based automation testing framework using Python and pytest.
 
@@ -6,7 +6,7 @@ The goal of this project is to showcase how a basic automation script evolves in
 
 ---
 
-## 🧠 Project Evolution
+## Project Evolution
 
 This framework was built incrementally to demonstrate learning progression:
 
@@ -41,5 +41,3 @@ This framework was built incrementally to demonstrate learning progression:
 - Integrated `pytest-html` for generating test reports
 
 ---
-
-## 📁 Project Structure
