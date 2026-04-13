@@ -22,3 +22,8 @@ class LoginPage:
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()
+
+    def get_invalid_credentials_message(self):
+        return self.driver.find_element(*LoginLocators.INVALID_CREDENTIALS_MESSAGE).text
+    def get_required_field_error(self):
+        return self.driver.find_element(*LoginLocators.REQUIRED_FIELD_ERROR)
